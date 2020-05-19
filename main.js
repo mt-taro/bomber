@@ -26,7 +26,7 @@ window.onload = function(){
 
     // フラグにより再帰呼び出し
     if(run){
-      setTimeout(arguments.calle, fps);
+      setTimeout(arguments.callee, fps);
     }
   })();
 }
