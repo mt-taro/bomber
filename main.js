@@ -35,7 +35,7 @@ window.onload = function(){
 function mouseMove(event){
   // マウスカーソル座標の更新
   mouse.x = event.clientX - screenCanvas.offsetLeft;
-  mouse.y = event.clientY - screenCanvas.oggsettop;
+  mouse.y = event.clientY - screenCanvas.offsetTop;
 }
 
 function keyDown(event){
