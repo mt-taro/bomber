@@ -4,6 +4,7 @@ var run = true;
 var fps = 1000 / 30;
 var mouse = new Point();
 var ctx; // canvas2d コンテキスト格納用
+var CHARA_COLOR = 'rgba(0, 0, 255, 0.75)';
 
 // main
 window.onload = function(){
@@ -23,10 +24,14 @@ window.onload = function(){
   // エレメント関連
   info = document.getElementById('info');
 
+  // 自機初期化
+  var chara = new Character();
+  chara.init(10);
+
   // ループ処理を呼び出す
   (function(){
     // HTMLを更新
-    info.innerHTML = mouse.x + ':' + mouse.y;
+    info.innerHTML = '自機：(' + mouse.x + ', ' + mouse.y + ')';
 
     // screenクリア
     ctx.clearRect(0, 0, screenCanvas.width, screenCanvas.height);
@@ -34,13 +39,17 @@ window.onload = function(){
     // パスの設定を開始
     ctx.beginPath();
 
-    // 円の色を設定する
-    ctx.fillStyle = 'rgba(0, 0, 255, 0.75)';
+    // 自機の位置を設定
+    chara.position.x = mouse.x;
+    chara.position.y = mouse.y;
 
-    // 円を描くパスを設定
-    ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2, false);
+    // 自機を描くパスを設定
+    ctx.arc(chara.position.x, chara.position.y, chara.size, 0, Math.PI * 2, false);
 
-    // 円を描く
+    // 自機の色を設定する
+    ctx.fillStyle = CHARA_COLOR;
+
+    // 自機を描く
     ctx.fill();
 
     // フラグにより再帰呼び出し
